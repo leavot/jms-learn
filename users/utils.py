@@ -29,7 +29,7 @@ class Bash(object):
     def code(self):
         return self.ret.returncode
 
-
+#管理linux系统用户，包括添加，删除用户
 class ServerUserManager(object):
     def __init__(self, sh):
         self.sh = sh()
