@@ -41,7 +41,12 @@ def user_add(request):
         return HttpResponse('验证失败: %s' % error_msg)
 
 
+# @login_required装饰器，验证用户已经登陆才可以执行下面的方法，如果没有登陆，跳转到login_url指定的url，
+# http://alsww.blog.51cto.com/2001924/1732435
+# reverse_lazy用于从urls.py反解url地址，users:login的users是urls.py中的app_name，login是urlpatterns中对应的name，由此得到对应的url地址，如果没有登陆会跳转到此地址
+# https://docs.djangoproject.com/en/1.11/ref/urlresolvers/#reverse-lazy
 @login_required(login_url=reverse_lazy('users:login'))
+
 @user_passes_test(lambda user: user.is_superuser)
 def user_update(request, user_id):
     user = get_object_or_404(User, id=user_id)

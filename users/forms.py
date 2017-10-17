@@ -27,7 +27,7 @@ class UserUpdateForm(ModelForm):
 
     class Meta:
         model = User
-        fields = ['name', 'password', 'email', 'is_superuser', 'is_active']
+        fields = ['name','username', 'password', 'email', 'is_superuser', 'is_active']
         widgets = {
             'username': TextInput(attrs={'placeholder': 'username'}),
             'email': EmailInput(attrs={'placeholder': 'email'})
