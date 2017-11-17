@@ -46,10 +46,14 @@ def user_add(request):
 # reverse_lazy用于从urls.py反解url地址，users:login的users是urls.py中的app_name，login是urlpatterns中对应的name，由此得到对应的url地址，如果没有登陆会跳转到此地址
 # https://docs.djangoproject.com/en/1.11/ref/urlresolvers/#reverse-lazy
 @login_required(login_url=reverse_lazy('users:login'))
-
+# @user_passes_test 装饰器，验证用户是否是管理员，login_url是user_passes_test的可选参数，如果不填默认为settings.LOGIN_URL,lambda定义了一个匿名函数，
 @user_passes_test(lambda user: user.is_superuser)
+#view里的这个user_update方法接收 request和user_id两个参数
 def user_update(request, user_id):
+#从model User中获得id为user_id的对象给user
+#http://www.cnpythoner.com/post/105.html
     user = get_object_or_404(User, id=user_id)
+    print (request.path,request.user,request.body)
     if request.method == 'POST':
         form = UserUpdateForm(request.POST, instance=user)
         if form.is_valid():

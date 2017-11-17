@@ -7,6 +7,6 @@ class User(AbstractUser):
     name = models.CharField(max_length=32, help_text="这是一个名字")
     wechat = models.CharField(max_length=128)
 
-#当你用print打印输出的时候，Python会调用它的str方法，这里重写__str__方法
+#当你用print打印输出的时候，Python会调用它的str方法，这里重写__str__方法，return是返回想要的数据
     def __str__(self):
         return "%s <%s>" % (self.username, self.name)
