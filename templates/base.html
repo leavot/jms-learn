@@ -8,6 +8,8 @@
         {% block title %}
         {% endblock %}
     </title>
+    {#此处引入jquery，可以在继承了base.html的template中使用jquery#}
+    {#jquery教程 http://www.runoob.com/jquery/jquery-tutorial.html #}
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'semantic/semantic.min.css' %}">
     <script src="{% static 'semantic/semantic.min.js' %}"></script>

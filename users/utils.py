@@ -30,10 +30,11 @@ class Bash(object):
         return self.ret.returncode
 
 #管理linux系统用户，包括添加，删除用户
+#继承自object的类是新式类，兼容旧式类，类的命名使用首字母大写的驼峰命名法
+#https://www.cnblogs.com/attitudeY/p/6789370.html
 class ServerUserManager(object):
     def __init__(self, sh):
         self.sh = sh()
-
     def present(self, username='', password='', shell="/bin/bash"):
         cmd_add = 'id {username} || useradd  {username} -s {shell}'.format(username=username, shell=shell)
         self.sh.execute(cmd_add)

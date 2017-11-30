@@ -1,8 +1,12 @@
+{#这里用的是django专用模版语言,extends表示此页面继承自base.html #}
 {% extends 'base.html' %}
+{#定义一个block content #}
 {% block content %}
     <h1 class="ui header">用户更新</h1>
+    {#定义一个form，方法是post #}
     <form class="ui form" method="post" action="">
         {% csrf_token %}
+        {#这里的form是从views.py->user_update->render->{'form': form}传过来的from #}
         {% for field in form %}
             {% if field.name in "is_superuser is_active" %}
                 <div class="inline field">
@@ -18,6 +22,7 @@
                 </div>
             {% endif %}
         {% endfor %}
+        {#button的type是submit，点击后会提交form#}
         <button class="ui button" type="submit">Submit</button>
     </form>
 {% endblock %}
